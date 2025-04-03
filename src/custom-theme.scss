@@ -1,0 +1,29 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+@use 'sass:map';
+
+// Define a custom theme
+$custom-theme: mat.define-light-theme((
+  color: (
+    primary: mat.define-palette(mat.$blue-palette),
+    accent: mat.define-palette(mat.$azure-palette),
+    warn: mat.define-palette(mat.$red-palette),
+  ),
+  typography: mat.define-typography-config(
+    $font-family: 'Poppins, Roboto, sans-serif',
+  ),
+  density: 0,
+));
+
+// Apply the theme to the root element
+:root {
+  @include mat.all-component-themes($custom-theme);
+}
+
+// Optimize theme application by using CSS custom properties
+:root {
+  --primary-color: #{mat.get-color-from-palette(map.get($custom-theme, color, primary))};
+  --accent-color: #{mat.get-color-from-palette(map.get($custom-theme, color, accent))};
+  --warn-color: #{mat.get-color-from-palette(map.get($custom-theme, color, warn))};
+}
