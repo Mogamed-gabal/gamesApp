@@ -3,23 +3,20 @@
 @use '@angular/material' as mat;
 @use 'sass:map';
 
-// Define a custom theme
-$custom-theme: mat.define-light-theme((
+// Include the common styles for Angular Material
+@include mat.core();
+
+// Define a light theme
+$light-theme: mat.define-light-theme((
   color: (
-    primary: mat.define-palette(mat.$blue-palette),
-    accent: mat.define-palette(mat.$azure-palette),
-    warn: mat.define-palette(mat.$red-palette),
-  ),
-  typography: mat.define-typography-config(
-    $font-family: 'Poppins, Roboto, sans-serif',
-  ),
-  density: 0,
+    primary: mat.define-palette(mat.$indigo-palette),
+    accent: mat.define-palette(mat.$pink-palette),
+    warn: mat.define-palette(mat.$red-palette)
+  )
 ));
 
-// Apply the theme to the root element
-:root {
-  @include mat.all-component-themes($custom-theme);
-}
+// Apply the light theme by default
+@include mat.all-component-themes($light-theme);
 
 // Optimize theme application by using CSS custom properties
 :root {
